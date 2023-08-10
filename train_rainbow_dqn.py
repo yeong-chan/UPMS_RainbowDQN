@@ -6,7 +6,7 @@ import torch
 import numpy as np
 import random
 
-from rainbow_dqn import DQNAgent
+from agent.rainbow_dqn import DQNAgent
 from environment.env import UPMSP
 import matplotlib.pyplot as plt
 from torch.utils.tensorboard import SummaryWriter
