@@ -525,8 +525,6 @@ class DQNAgent:
 
     def train(self, num_episode: int, plotting_interval: int = 200):
         """Train the agent."""
-        vessl.log(step=e, payload={'reward': np.mean(r_epi)})
-
         losses = []
         scores = []
         update_cnt = 0
@@ -561,6 +559,7 @@ class DQNAgent:
                 # if training is ready
                 if len(self.memory) >= self.batch_size:
                     loss = self.update_model()
+                    vessl.log(step=e, payload={'update_cnt': loss})
                     losses.append(loss)
                     update_cnt += 1
 
