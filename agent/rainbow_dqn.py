@@ -1,3 +1,4 @@
+import vessl
 import math
 import os
 import random
@@ -524,6 +525,8 @@ class DQNAgent:
 
     def train(self, num_episode: int, plotting_interval: int = 200):
         """Train the agent."""
+        vessl.log(step=e, payload={'reward': np.mean(r_epi)})
+
         losses = []
         scores = []
         update_cnt = 0
@@ -550,8 +553,11 @@ class DQNAgent:
                 if done:
                     # state = self.env.reset()
                     scores.append(score)
+                    print(f"e:{e}, score:{score}")
+                    vessl.log(step=e, payload={'reward': score})
                     score = 0
 
+                
                 # if training is ready
                 if len(self.memory) >= self.batch_size:
                     loss = self.update_model()
@@ -562,7 +568,6 @@ class DQNAgent:
                     if update_cnt % self.target_update == 0:
                         self._target_hard_update()
 
-            print(f"e:{e}, score:{np.sum(scores)}")
 
                 # plotting
                 # if e % plotting_interval == 0:
