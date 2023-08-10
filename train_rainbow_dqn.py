@@ -16,10 +16,8 @@ device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cp
 
 if __name__ == "__main__":
 
-    # writer = SummaryWriter()
     cfg = get_cfg()
-    # vessl.init(organization="snu-eng-dgx", project="Quay", hp=cfg)
-
+    
     mode = cfg.mode
     if mode == 'heuristic':
         action_size = 3
@@ -40,15 +38,13 @@ if __name__ == "__main__":
 
     seed = 777
 
-
     def seed_torch(seed):
         torch.manual_seed(seed)
         if torch.backends.cudnn.enabled:
             torch.cuda.manual_seed(seed)
             torch.backends.cudnn.benchmark = False
             torch.backends.cudnn.deterministic = True
-
-
+            
     np.random.seed(seed)
     random.seed(seed)
     seed_torch(seed)
@@ -56,7 +52,7 @@ if __name__ == "__main__":
     # parameters
     num_frames = 10000
     memory_size = 10000
-    batch_size = 128
+    batch_size = 64
     target_update = 100
 
     # train
