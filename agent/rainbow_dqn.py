@@ -559,7 +559,7 @@ class DQNAgent:
                 # if training is ready
                 if len(self.memory) >= self.batch_size:
                     loss = self.update_model()
-                    vessl.log(step=e, payload={'update_cnt': loss})
+                    vessl.log(step=update_cnt, payload={'loss': loss})
                     losses.append(loss)
                     update_cnt += 1
 
