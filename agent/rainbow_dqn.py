@@ -14,7 +14,7 @@ import torch.optim as optim
 from IPython.display import clear_output
 from torch.nn.utils import clip_grad_norm_
 
-from segment_tree import MinSegmentTree, SumSegmentTree
+from agent.segment_tree import MinSegmentTree, SumSegmentTree
 
 
 class ReplayBuffer:
